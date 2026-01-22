@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Ingredients</title>
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Rosiana', cursive;
+      background-image: url("https://i.pinimg.com/1200x/e2/6c/18/e26c18a3a0585ad8fafac065d5baf2cc.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .postit {
+      background-color: #ffe680;
+      width: 650px;
+      padding: 70px;
+      box-shadow: 10px 10px 20px rgba(0,0,0,0.35);
+      border: 10px double #b8393d;
+      text-align: left;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #b8393d;
+      font-size: 60px;
+      text-decoration: underline;
+    }
+
+    .instruction {
+      color: #b8393d;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 18px;
+    }
+
+    .ingredient-btn {
+      display: inline-block;
+      min-width: 170px;
+      padding: 8px 18px;
+      font-family: 'Rosiana', cursive;
+      font-size: 40px;
+      color: #b8393d;
+      background: transparent;
+      border: 3px solid #b8393d;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.25s ease;
+    }
+
+    .ingredient-btn:hover {
+      background-color: #b8393d;
+      color: #ffe680;
+      transform: translateX(6px);
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="postit">
+  <h2>Ingredients</h2>
+
+  <!-- ✅ NY TEXT -->
+  <p class="instruction">Choose one of the ingredients you have at home</p>
+
+  <ul>
+    <li>
+      <button class="ingredient-btn" onclick="location.href='rice.html'">
+        rice
+      </button>
+    </li>
+
+    <li>
+      <button class="ingredient-btn" onclick="location.href='pasta.html'">
+        pasta
+      </button>
+    </li>
+
+    <li>
+      <button class="ingredient-btn" onclick="location.href='beans.html'">
+        beans
+      </button>
+    </li>
+
+    <li>
+      <button class="ingredient-btn" onclick="location.href='eggs.html'">
+        eggs
+      </button>
+    </li>
+  </ul>
+</div>
+
+</body>
+</html>

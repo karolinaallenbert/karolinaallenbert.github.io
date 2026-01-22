@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Recipes</title>
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Rosiana', cursive;
+      background-image: url("https://i.pinimg.com/1200x/e2/6c/18/e26c18a3a0585ad8fafac065d5baf2cc.jpg");
+      background-size: cover;
+    }
+
+    .postit {
+      background-color: #ffe680;
+      width: 340px;
+      padding: 25px 20px;
+      box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      color:#b8393d;
+      text-align:center;
+      margin-top:0;
+    }
+
+    .recipe {
+      margin-bottom: 15px;
+      border-bottom: 1px dashed #b8393d;
+      padding-bottom: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="postit">
+  <h2>your recipes</h2>
+
+  <!-- Här visas dina ingredienser -->
+  <p id="youHave"></p>
+
+  <!-- Här lägger vi recepten -->
+  <div id="recipeList"></div>
+
+  <p><a href="whatdoyouhave.html">⬅ back</a></p>
+</div>
+
+<script>
+  // 1. Hämta ingredienser sparade från första sidan
+  const found = JSON.parse(localStorage.getItem("matchedIngredients")) || [];
+
+  // Visa vad användaren skrev
+  document.getElementById("youHave").innerText =
+    "You have: " + (found.length ? found.join(", ") : "inget sparat");
+
+  // 2. Receptdatabas
+  const recipes = [
+    {
+      name: "Tomatpasta",
+      ingredients: ["pasta","tomat","ost","lök"],
+      text: "Koka pasta. Stek lök och tomat. Blanda med ost och pasta."
+    },
+    {
+      name: "Omelett",
+      ingredients: ["ägg","ost","tomat"],
+      text: "Vispa ägg. Häll i panna. Lägg i ost och tomat."
+    },
+    {
+      name: "Potatissoppa",
+      ingredients: ["potatis","lök","mjölk"],
+      text: "Koka potatis och lök. Mixa. Späd med mjölk."
+    },
+    {
+      name: "Pastasallad",
+      ingredients: ["pasta","gurka","tomat","ost"],
+      text: "Koka pasta. Blanda med grönsaker och ost."
+    }
+  ];
+
+  // 3. Matcha recept med ingredienser
+  function matches(recipe, userIngredients) {
+    return recipe.ingredients.some(i =>
+      userIngredients.some(u => u.includes(i))
+    );
+  }
+
+  const matchingRecipes = recipes.filter(r => matches(r, found));
+
+  const container = document.getElementById("recipeList");
+
+  // 4. Om inga recept matchar
+  if (matchingRecipes.length === 0) {
+    container.innerHTML = "No recipes found 🤷‍♀️";
+  } else {
+    matchingRecipes.forEach(r => {
+      const div = document.createElement("div");
+      div.className = "recipe";
+      div.innerHTML = `
+        <strong>${r.name}</strong><br>
+        Ingredients: ${r.ingredients.join(", ")}<br>
+        ${r.text}
+      `;
+      container.appendChild(div);
+    });
+  }
+</script>
+
+</body>
+</html>
